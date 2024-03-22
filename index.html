@@ -1,13 +1,33 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script defer type="module" src="./src/index.ts"></script>
+    <script defer type="module">
+      const start = async () => {
+        console.log("start");
+        const root = document.getElementById("root");
+        if (root) {
+          console.log("root");
+          root.innerHTML = `
+            <div>
+            hello app !
+            </div>
+          `;
+        }
+      };
+
+      document.addEventListener("readystatechange", () => {
+        const elem = "addEventListener" in globalThis ? window : document;
+        elem.addEventListener("load", start, false);
+      });
+    </script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="root"></div>
   </body>
 </html>
